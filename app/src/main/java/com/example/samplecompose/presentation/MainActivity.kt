@@ -25,6 +25,7 @@ import com.example.samplecompose.presentation.theme.SampleComposeTheme
 import com.example.samplecompose.presentation.screen.HomeScreen
 import com.example.samplecompose.presentation.screen.LoginScreen
 import org.koin.compose.KoinContext
+import org.koin.core.scope.Scope
 
 class MainActivity : ComponentActivity() {
 
@@ -63,8 +64,8 @@ fun App() {
 }
 
 @Composable
-fun NavigationProvider(function: @Composable (NavHostController) -> Unit) {
-    val appNavigator = useScope(Scopes.App).use<AppNavigator>()
+fun Scope.NavigationProvider(function: @Composable (NavHostController) -> Unit) {
+    val appNavigator = use<AppNavigator>()
     val navController = rememberNavController()
     remember {
         object : RememberObserver {
@@ -81,6 +82,5 @@ fun NavigationProvider(function: @Composable (NavHostController) -> Unit) {
             }
         }
     }
-
     function(navController)
 }
