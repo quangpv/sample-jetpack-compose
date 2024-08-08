@@ -15,10 +15,6 @@ enum class Scopes : IChars {
     }
 }
 
-interface IApp {
-    val currentScreen: CharSequence
-}
-
 interface ILabel : CharSequence
 
 
@@ -32,8 +28,13 @@ interface ILoginAgent {
 }
 
 interface ILogin {
-    val logo: CharSequence
-    val agents: List<ILoginAgent>
+    val loadingState: HasIsLoading
+    val email: CharSequence
+    val password: CharSequence
+}
+
+interface HasIsLoading {
+    val isLoading: Boolean
 }
 
 interface IChars : CharSequence {

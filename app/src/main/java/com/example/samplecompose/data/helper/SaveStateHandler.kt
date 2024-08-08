@@ -1,5 +1,7 @@
 package com.example.samplecompose.data.helper
 
 class SaveStateHandler {
-    fun save(state: Any) {}
+    fun save(state: Any) {
+
+    }
 }

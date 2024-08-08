@@ -11,14 +11,14 @@ import kotlinx.coroutines.delay
 
 class FetchHomeStateCase(private val stateRepo: StateRepo) {
     private val state = object : IHome, Signal by signal() {
-        override val title: CharSequence = mutableCharStateOf("Title")
-        override val favorites: CharSequence = mutableCharStateOf("Favorites")
+        override val title: CharSequence = mutableCharStateOf("Loading Title...")
+        override val favorites: CharSequence = mutableCharStateOf("Loading Favorites...")
     }.also { stateRepo.setState(it) }
 
     val result: IHome get() = state
 
     suspend operator fun invoke() {
-        result.title.edit()?.update("Home")
+        result.title.edit()?.update("Home [click here to refresh favorites]")
         result.favorites.edit()?.update("Home favorites")
         delay(2000)
         state.emit()
